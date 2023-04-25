@@ -13,10 +13,10 @@ app.listen(3000);
 app.use(express.json()); // middleware fucn => post, front->json
 
 // const cookieParser=require('cookie-parser');
-app.use(cookieParser());
+// app.use(cookieParser());
 
 const authRouter=express.Router();
-const userRouter=express.Router();
+
 
 
 app.use('/auth',authRouter);
@@ -48,10 +48,7 @@ userRouter
 
 
 
-authRouter
-    .route('/signup')
-    .get(getUsers)
-    // .post(postSignUp);
+
    
     
     authRouter
@@ -66,20 +63,7 @@ authRouter
 
 
 
- function getSignUp(req,res){
 
-    res.sendFile("D:/full stack wd/fjp-1/Backend/public/index.html");
- }  
-
- function postSignUp(req,res){
-    //  res.send("done");
-    let obj=req.body;
-    console.log(obj);
-    res.json({
-        message:"User signed up",
-        data:obj
-    });
- }
 
 
     
@@ -88,7 +72,7 @@ authRouter
 // const db_link='';
 mongoose.connect(db_link)
    .then(function(db){
-     // console.log("db connected");
+      console.log("db connected");
    })
    .catch(function(err){
      console.log(err);
@@ -272,61 +256,17 @@ async function deleteUsers(req,res){
 // // app.delete('/user',deleteuser);
 // // app.get('/user/:id',getUserById);
 
-
-// function getuser(req,res){
-//     res.send(users);
-//     // res.sendFile("D:/full stack wd/fjp-1/Backend/public/index.html");
-// };
-
-// function postuser (req,res){
-//     console.log(req.body);
-//     users=req.body;
-//     res.json({
-//         mess:"successfully",
-//         user:req.body
-//     })
-// };
-
-// function pathuser(req,res){
-//     console.log(req.body);
-//     // update data in user object hi 
-//     let dataToBeUpdated = req.body;
-//     for (key in dataToBeUpdated) {
-//         users[key] = dataToBeUpdated[key];
-//     }
-//     res.json({
-//         message: "data updated succesfully"
-//     })
-// };
-
-// function deleteuser(req,res){
-//     users={};
-
-//     res.json({
-//       message: "data has been deleted"
-//   })
-
-// };
-
-// function getUserById(req,res){
-//     console.log(req.params.id);    // 2
-//     res.json({msg:"user id is ","obj":req.params}); // id:2
-// };
-
-
 // // query
 // app.get('/user',(req,res)=>{
-//     console.log(req.query);
+//   console.log(req.query);
 
-//     let { name,age }=req.query;
-//     let filterData=user.filter( userobj=>{
-//         return (userobj.name==name && userobj.age==age)
-//     })
-//     console.log(filterData);
-//     res.send(filterData);
+//   let { name,age }=req.query;
+//   let filterData=user.filter( userobj=>{
+//       return (userobj.name==name && userobj.age==age)
+//   })
+//   console.log(filterData);
+//   res.send(filterData);
 // });
-
-
 
 
 
