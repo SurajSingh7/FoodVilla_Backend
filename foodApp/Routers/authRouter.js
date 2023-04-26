@@ -1,6 +1,8 @@
 const express=require('express');
 const authRouter=express.Router();
 const userModel=require('../models/userModels');
+const jwt=require('jsonwebtoken');
+ const jwt_key=require('../secrets');
 
 authRouter
     .route('/signup')
@@ -47,7 +49,13 @@ async function loginUser(req,res){
   if(user){
     //bcrypt-> compare use later
     if(user.password==data.password){
-        res.cookie('isLoggedInHai',true,{httpOnly:true});
+        
+        let uid=user['_id']; // uid
+        let jwttoken=jwt.sign({payload:uid},jwt_key);
+
+        res.cookie('login',jwttoken,{httpOnly:true});
+
+
         return res.json({mess:'user has logged in',
                          userDetails:data
     });
