@@ -1,9 +1,7 @@
-
 const mongoose=require('mongoose');
 const emailValidator=require('email-validator');
 const bcrypt=require('bcrypt');
-
-const db_link='mongodb+srv://220suraj:220surajM@cluster0.cpbzobw.mongodb.net/?retryWrites=true&w=majority';
+const {db_link}=require('../secrets');
 
 mongoose.connect(db_link)
    .then(function(db){
@@ -39,6 +37,16 @@ mongoose.connect(db_link)
         validate: function(){
           return this.confirmPassword==this.password;
         }
+    },
+
+    role: {
+      type: String,
+      enum: ['admin', 'user', 'restaurantowner', 'deliveryboy'],
+      default:'user'
+    },
+    profileImage: {
+      type: String,
+      default:'img/users/default.jpg'
     }
 
   });

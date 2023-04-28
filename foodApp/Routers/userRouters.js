@@ -1,6 +1,6 @@
 const express=require('express');
 const userRouter=express.Router();
-const protectRoute=require('./authHelper');
+const {protectRoute}=require('./authHelper');
 const {getuser,getUsers,postuser,pathuser,deleteuser,getUserById}=require('../controller/userController');
 
 userRouter
@@ -11,13 +11,13 @@ userRouter
   .delete(deleteuser)
 
 
-userRouter
-  .route('/getcookies')
-  .get(getcookies);
+// userRouter
+//   .route('/getcookies')
+//   .get(getcookies);
 
-userRouter
- .route('/setcookies')
- .get(setcookies);      
+// userRouter
+//  .route('/setcookies')
+//  .get(setcookies);      
  
  
 userRouter

@@ -1,6 +1,9 @@
 const express=require('express');
 const authRouter=express.Router();
 const userModel=require('../models/userModels');
+
+const jwt=require('jsonwebtoken');
+const {jwt_key}=require('../secrets');
  
 
 authRouter

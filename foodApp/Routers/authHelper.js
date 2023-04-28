@@ -1,6 +1,6 @@
-//   let flag=false; // user logged in or not
 const jwt=require('jsonwebtoken');
- const jwt_key=require('../secrets');
+const {jwt_key}=require('../secrets');
+
 
 function protectRoute(req,res,next){
 
@@ -17,4 +17,4 @@ function protectRoute(req,res,next){
     }
 }
 
-module.exports=protectRoute;
+module.exports={protectRoute};
