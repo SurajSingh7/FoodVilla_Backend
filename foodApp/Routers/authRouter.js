@@ -1,35 +1,3 @@
-const express=require('express');
-const authRouter=express.Router();
-const userModel=require('../models/userModels');
-
-const jwt=require('jsonwebtoken');
-const {jwt_key}=require('../secrets');
- 
-
-authRouter
-    .route('/signup')
-    .get(getSignUp)
-    .post(postSignUp);
-
-authRouter
-    .route('/login')
-    .post(loginUser);    
-
-
- function getSignUp(req,res){
-        res.sendFile("D:/full stack wd/fjp-1/Backend/public/index.html");
-     }  
-    
-//  function postSignUp(req,res){
-//         //  res.send("done");
-//         let obj=req.body;
-//         console.log(obj);
-//         res.json({
-//             message:"User signed up",
-//             data:obj
-//         });
-//      }   
-     
 
   async function postSignUp(req,res){
 
