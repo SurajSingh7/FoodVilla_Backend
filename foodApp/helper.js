@@ -3,20 +3,6 @@ const {jwt_key}=require('./secrets');
 const userModel=require('../models/userModels');
 
 
-// function protectRoute(req,res,next){
-    
-//     if(req.cookies.login){
-//         let verified=jwt.verify(req.cookies.login,jwt_key);
-//         if(verified){
-//             next();
-//         }else{
-//             return res.json({mess:"Not allowed"});
-//         }
-      
-//     }else{
-//          return res.json({mess:"Not allowed"});
-//     }
-// }
 //protectRoute
 module.exports.protectRoute = async function (req, res, next) {
     let token;

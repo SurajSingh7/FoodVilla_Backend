@@ -8,7 +8,7 @@ const {getUser,updateUser,deleteUser,getAllUser}=require('../controller/userCont
 //user ke options
 userRouter
   .route('/:id')
-  .patch(updateUser)
+  .patch(updateUser) 
   .delete(deleteUser)
 
 userRouter
