@@ -1,4 +1,4 @@
-const authRouter=express.Router();
+// const authRouter=express.Router();
 const userModel=require('../models/userModels');
 
 const jwt=require('jsonwebtoken');

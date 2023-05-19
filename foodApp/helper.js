@@ -1,6 +1,6 @@
 const jwt=require('jsonwebtoken');
 const {jwt_key}=require('./secrets');
-const userModel=require('../models/userModels');
+const userModel=require('./models/userModels');
 
 
 //protectRoute
@@ -30,7 +30,7 @@ module.exports.protectRoute = async function (req, res, next) {
 module.exports.isAuthorised = function (roles) {
     return function (req, res, next) {
       let role = req.role;
-      if (roles.includes(role)) {
+      if (roles.includes(role)==true) {
         next();
       }
       else {

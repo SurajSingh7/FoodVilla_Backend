@@ -2,6 +2,7 @@ const express=require('express');
 const userRouter=express.Router();
 const {protectRoute,isAuthorised}=require('../helper');
 const {getUser,updateUser,deleteUser,getAllUser}=require('../controller/userController');
+const { signup, login } = require('../controller/authController');
 
 
 
