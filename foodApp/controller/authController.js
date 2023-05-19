@@ -59,6 +59,7 @@ module.exports.login=async function (req, res) {
 }
 
 module.exports.forgetpassword = async function (req, res) {
+
   try {
     let { email } = req.body;
     const user = await userModel.findOne({ email: email });
@@ -68,9 +69,10 @@ module.exports.forgetpassword = async function (req, res) {
       //create link 
       //https://xyz.com/resetPassword/resetToken
       let resetPasswordLink = `${req.protocol}://${req.get('host')}/user/resetpassword/${resetToken}`;
-      //send email to user
-      //nodemailer
-      await sendMail("forgetpassword", { email, resetPasswordLink });
+     
+      // //send email to user
+      // //nodemailer
+      // await sendMail("forgetpassword", { email, resetPasswordLink });
       
       res.json({
         msg:"email sent successfully"
