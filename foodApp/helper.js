@@ -6,6 +6,7 @@ const userModel=require('./models/userModels');
 //protectRoute
 module.exports.protectRoute = async function (req, res, next) {
     let token;
+    console.log(req.cookies.login);
     if (req.cookies.login) {
       token = req.cookies.login;
       let payloadObj = jwt.verify(token, jwt_key); 
@@ -20,7 +21,7 @@ module.exports.protectRoute = async function (req, res, next) {
       }
     } else {
       return res.json({
-        msg: "opertion not allowed",
+        msg: "opertion not allowed by suraj singh",
       });
     }
   };
