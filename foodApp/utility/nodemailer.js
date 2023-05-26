@@ -1,5 +1,6 @@
 // "use strict";
 const nodemailer = require("nodemailer");
+const {mailPass}=require("../secrets");
 
 // async..await is not allowed in global scope, must use a wrapper
 // str->'signup'/'forgetpassword'
@@ -12,7 +13,7 @@ module.exports.sendMail = async function sendMail(str, data) {
     secure: false, // true for 465, false for other ports
     auth: {
       user: "ssgsingh160@gmail.com", // generated ethereal user
-      pass: "juqudzrbhofzgfme"    
+      pass: `${mailPass}`
     },
   });
 
