@@ -16,7 +16,7 @@ module.exports.sendMail = async function sendMail(str, data) {
       pass: `${mailPass}`
     },
   });
-
+  
 
   let eSubj, eHtml;
   if (str == "signup") {
