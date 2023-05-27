@@ -23,8 +23,8 @@ app.use('/plan',planRouter);
 app.use('/review',reviewRouter);
 app.use('/booking',bookingRouter);
 
-// const port=process.env.PORT || 5000;
-const port=3000;
+const port=process.env.PORT || 5000;
+// const port=3000;
 app.listen(port);
 
 
