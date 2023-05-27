@@ -4,7 +4,7 @@ const planRouter = express.Router();
 const { getAllPlans, getPlan, createPlan, updatePlan, deletePlan, top3Plans } = require('../controller/planController');
 
 planRouter
-    .route('/all')
+    .route('/allPlans')
     .get(getAllPlans);
 
 planRouter
@@ -13,16 +13,16 @@ planRouter
 
 planRouter.use(protectRoute) //logged in hai ya nhi 
 planRouter
-    .route('/single/:id')
+    .route('/plan/:id')
     .get(getPlan)
 
 planRouter.use(isAuthorised(['admin', 'restaurantowner'])) // logged in , lekin role kya hai
 planRouter
-    .route("/crud")
+    .route("/crudPlan")
     .post(createPlan);
 
 planRouter
-    .route('/crud/:id')
+    .route('/crudPlan/:id')
     .patch(updatePlan)
     .delete(deletePlan)
 
