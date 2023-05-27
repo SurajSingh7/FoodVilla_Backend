@@ -17,7 +17,7 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.21",
-    "mongoose": "^7.0.4",
+    "mongoose": "^14.17.0",
     "nodemailer": "^6.9.2",
     "nodemon": "^2.0.22",
     "stripe": "^12.6.0",
