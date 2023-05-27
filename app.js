@@ -24,6 +24,7 @@ app.use('/review',reviewRouter);
 app.use('/booking',bookingRouter);
 
 const port=process.env.PORT || 5000;
+console.log("hi");
 // const port=3000;
 app.listen(port);
 
