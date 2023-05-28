@@ -6,17 +6,17 @@ module.exports.getAllReviews = async function (req, res) {
     const reviews = await reviewModel.find();
     if (reviews) {
       return res.json({
-        msg: "review retrieved",
-        reviews,
+        message: "review retrieved",
+        data: reviews
       });
     } else {
       return res.json({
-        msg: "reviews not found",
+        message: "reviews not found",
       });
     }
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message
     });
   }
 };
@@ -26,17 +26,17 @@ module.exports.top3Review = async function (req, res) {
     const top3 = await reviewModel.find().sort({ rating: -1 }).limit(3);
     if (top3) {
       return res.json({
-        msg: "review retrieved",
-        top3,
+        message: "review retrieved",
+        data:top3
       });
     } else {
       return res.json({
-        msg: "reviews not found",
+        message: "reviews not found"
       });
     }
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message
     });
   }
 };
@@ -48,17 +48,17 @@ module.exports.getPlanReview = async function (req, res) {
       reviews = reviews.filter(review => review.plan["_id"] == planId);
     if (reviews) {
       return res.json({
-        msg: "reviews retrieved",
-        reviews,
+        message: "reviews retrieved",
+        data:reviews
       });
     } else {
       return res.json({
-        msg: "reviews not found",
+        message: "reviews not found",
       });
   }
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -76,12 +76,12 @@ module.exports.createReview = async function (req, res) {
     await postReview.save();
 
     return res.json({
-      msg: "review posted",
-      postReview,
+      message: "review posted",
+      data:postReview
     });
   } catch (err) {
     res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -105,12 +105,12 @@ module.exports.updateReview = async function (req, res) {
         await review.save();
         return res.json({
             message: "plan updated succesfully",
-            review
+            data:review
         })
     }
     catch (err) {
         return res.json({
-            msg:err.message
+          message:err.message
         })
     }
 }
@@ -122,12 +122,13 @@ module.exports.deleteReview = async function (req, res) {
         //change avg rating of plan 
         let review = await reviewModel.findByIdAndDelete(id);
         res.json({
-            message: "review deleted"
+            message: "review deleted",
+            data:review
         })
     }
     catch (err) {
         return res.json({
-            msg:err.message
+          message:err.message
         })
     }
 }

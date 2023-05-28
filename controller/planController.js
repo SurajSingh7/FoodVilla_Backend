@@ -5,18 +5,18 @@ module.exports.getAllPlans = async function (req, res) {
     let plans = await planModel.find();
     if (plans) {
       return res.json({
-        msg: "all plans retrieved",
+        message: "all plans retrieved",
         data: plans,
       });
     } else {
       //return with apt status code
       return res.json({
-        msg: "plans not found",
+        message: "plans not found",
       });
     }
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -27,18 +27,18 @@ module.exports.getPlan = async function (req, res) {
     let plan = await planModel.findById(id);
     if (plan) {
       return res.json({
-        msg: "plan retrieved",
+        message: "plan retrieved",
         data: plan,
       });
     } else {
       //return with apt status code
       return res.json({
-        msg: "plan not found",
+        message: "plan not found",
       });
     }
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -48,12 +48,12 @@ module.exports.createPlan = async function (req, res) {
     let plan = req.body;
     let createdPlan = await planModel.create(plan);
     return res.json({
-      msg: "plan created succesfully",
-      createdPlan,
+      message: "plan created succesfully",
+      data:createdPlan
     });
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message
     });
   }
 };
@@ -73,12 +73,12 @@ module.exports.updatePlan = async function (req, res) {
     }
     await plan.save();
     return res.json({
-      msg: "plan updated succesfully",
-      plan,
+      message: "plan updated succesfully",
+      data:plan
     });
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message
     });
   }
 };
@@ -89,11 +89,11 @@ module.exports.deletePlan = async function (req, res) {
     let deletedPlan = await planModel.findByIdAndDelete(id);
     return res.json({
       msg: "plan deleted succesfully",
-      deletedPlan,
+      data:deletedPlan
     });
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message
     });
   }
 };
@@ -102,13 +102,13 @@ module.exports.top3Plans = async function (req, res) {
     try {
         const plans = await planModel.find().sort({ ratingsAverage: -1 }).limit(3);
         return res.json({
-            msg: "top3 plans",
+          message: "top3 plans",
             data:plans
         })
     }
     catch (err) {
         res.json({
-            msg:err.message
+          message:err.message
         })
     }
 }

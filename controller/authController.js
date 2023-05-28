@@ -18,12 +18,12 @@ module.exports.signup=async function (req, res) {
     if (user) {
           res.json({
             msg: "user signed up",
-            user,
+            data:user
           });
       }
       else {
           res.json({
-            msg: "user could not be signed up"
+            message: "user could not be signed up"
           });
       }
   } catch (err) {
@@ -45,21 +45,21 @@ module.exports.login=async function (req, res) {
         var token = jwt.sign({ payload: uid }, jwt_key);
         res.cookie("login", token);
         res.json({
-          msg: "user logged in",
+          message: "user logged in",
         });
       } else {
         res.json({
-          msg: "wrong credentials",
+          message: "wrong credentials",
         });
       }
     } else {
       res.json({
-        msg: "user not found",
+        message: "user not found",
       });
     }
   } catch (err) {
     res.json({
-      msg: err.message,
+      message: err.message,
     });
   }
 }
@@ -80,18 +80,18 @@ module.exports.forgetpassword = async function (req, res) {
        await sendMail("forgetpassword", { email, resetPasswordLink });
       
       res.json({
-        msg:"email sent successfully"
+        message:"email sent successfully"
       })
     }
     else {
       res.json({
-        msg:'user not found'
+        message:'user not found'
       })
     }
   }
   catch (err) {
     res.status(500).json({
-      msg: err.message
+      message: err.message
     });
   }
 }
@@ -107,19 +107,19 @@ module.exports.resetpassword = async function (req, res) {
       user.resetPasswordHandler(password, confirmPassword);
       await user.save();
       res.json({
-        msg: "password chnaged succesfully",
+        message: "password chnaged succesfully",
       });
     }
     else{
       res.json({
-        msg: "user not found",
+        message: "user not found"
       });
     }
     
   }
   catch (err) {
     res.json({
-      msg:err.message
+      message:err.message
     })
   }
 }
@@ -127,7 +127,7 @@ module.exports.resetpassword = async function (req, res) {
 module.exports.logout = function (req,res) {
   res.cookie('login', ' ', { maxAge: 1 });
   res.json({
-    msg:'user logged out successfully'
+    message:'user logged out successfully'
   })
 }
 

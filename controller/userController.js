@@ -7,10 +7,10 @@ module.exports.getUser=async function getUser(req,res){
         let id = req.id;
         let user = await userModel.findById(id);
     
-        res.json({ msg: "users retrieved", user });
+        res.json({ message: "users retrieved", user });
       } catch (err) {
         res.json({
-          msg: err.message,
+          message: err.message,
         });
       }
 };
@@ -36,7 +36,7 @@ module.exports.updateUser = async function (req, res) {
         const updatedData = await user.save();
         res.json({
           message: "data updated succesfully",
-          updatedData,
+          data:updatedData
         });
       } else {
         res.json({
@@ -60,12 +60,12 @@ module.exports.deleteUser=async function deleteUser(req,res){
         // let doc = await userModel.findOneAndRemove({ email: "abcde@gmail.com" });
         let user = await userModel.findByIdAndDelete(id);
         res.json({
-          msg: "user has been deleted",
-          user,
+          message: "user has been deleted",
+          data:user
         });
       } catch (err) {
         res.json({
-          msg: err.message,
+          message: err.message
         });
       }
 
@@ -76,12 +76,12 @@ module.exports.getAllUser = async function (req, res) {
     try {
       let allUsers = await userModel.find();
       res.json({
-        msg: "user id is ",
-        allUsers,
+        message: "user id is ",
+        data:allUsers
       });
     } catch (err) {
       res.json({
-        msg: err.message,
+        message: err.message
       });
     }
   };
