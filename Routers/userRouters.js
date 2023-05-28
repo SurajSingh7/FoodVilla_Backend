@@ -35,7 +35,7 @@ userRouter
 //profile page
 userRouter.use(protectRoute)
 userRouter
-  .route('/profile')
+  .route('/userProfile')
   .get(getUser)
 
 //admin specific function

@@ -18,7 +18,7 @@ planRouter
 
 planRouter.use(isAuthorised(['admin', 'restaurantowner'])) // logged in , lekin role kya hai
 planRouter
-    .route("/crudPlan")
+    .route('/crudPlan')
     .post(createPlan);
 
 planRouter
