@@ -63,28 +63,73 @@ module.exports.getPlanReview = async function (req, res) {
   }
 };
 
-module.exports.createReview = async function (req, res) {
-    try {
-    const planId = req.params.plan;
-    const plan = await planModel.findById(planId);
-    const review = req.body;
-    const postReview = await reviewModel.create(review);
-    // plan.ratingsAverage =
-    //   (plan.ratingsAverage * plan.nor + req.body.rating) / (plan.nor + 1);
-    // plan.nor += 1;
-    // await plan.save();
-    await postReview.save();
 
-    return res.json({
-      message: "review posted",
-      data:postReview
-    });
-  } catch (err) {
-    res.status(500).json({
-      message: err.message,
-    });
+
+// module.exports.createReview = async function (req, res) {
+//     try {
+//     const planId = req.params.plan;
+//     const plan = await planModel.findById(planId);
+//     const review = req.body;
+//     const postReview = await reviewModel.create(review);
+//     // plan.ratingsAverage =
+//     //   (plan.ratingsAverage * plan.nor + req.body.rating) / (plan.nor + 1);
+//     // plan.nor += 1;
+//     // await plan.save();
+//     await postReview.save();
+
+//     return res.json({
+//       message: "review posted",
+//       data:postReview
+//     });
+//   } catch (err) {
+//     res.status(500).json({
+//       message: err.message,
+//     });
+//   }
+// };
+
+module.exports.createReview=async function (req,res){
+  try{
+    //we should know the plan to whih this review belongs
+    const planId=req.params.id;//params since when we click on the plan we land on a page to create review
+    const plan =await planModel.findById(planId);
+    let user=req.id
+    console.log("type is ",typeof user)
+    console.log(req.body)
+    
+    console.log("The user id is",user)
+    console.log("The plan id is",planId)
+    const data=await req.body;//data=review lies in req's body
+      let review= await reviewModel.create(data);
+      //updating the average rating of the plan
+      console.log(data)
+      plan.ratingsAverage=(plan.ratingsAverage*plan.nor+req.body.rating)/(plan.nor+1);
+      plan.nor+=1;
+      console.log("review ready")
+      await plan.save();
+      await review.save();
+      return res.json({
+          msg:"Review added", review
+      })
   }
-};
+  catch(err){
+    res.status(500).json({
+      msg:err.message,
+    })
+  }
+     
+  
+  }
+  
+
+
+
+
+
+
+
+
+
 
 module.exports.updateReview = async function (req, res) {
     try {
